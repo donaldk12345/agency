@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+ <link href="css/style.css" rel="stylesheet">
+ <link href=" {{ asset('css/app.css')}} " rel="stylesheet">
+ <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+        {% endblock %}
+        <style>
+         .alert{
+
+           padding:10px;
+           color:white;
+           text-align:center;
+           border:none;
+           border-radius:0;
+         }
+         .alert-success{
+           background-color:green;
+         }
+        </style>
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+            
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">MonApp</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse  collapse justify-content-between" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+      {% if app.user %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href=" {{path('home')}} ">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href=" {{path('blog')}}">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href=" {{path('publication')}}">Publication</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href=" {{path('modification')}}">Modification</a>
+        </li>
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav">
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <li class="nav-item">
+          <a class="nav-link disabled" href="#">{{app.user.email}}</a>
+        </li>
+      {% endif %}
+
+      {% if not app.user %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('security_login')}}">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('security_registration')}}">Inscription</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('security_logout')}}">Deconnexion</a>
+        </li>
+      {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+  {% for type , messages in app.flashes %}
+       {% for message in messages  %}
+         <div class="alert alert-{{ type }} " role="alert">
+         {{ message }}
+
+         </div>
+       {%  endfor %}
+  {% endfor %}
+        {% block body %}{% endblock %}
+    </body>
+    <footer class="container text-center mt-4">
+         <p class="text-muted">
+             <small>
+                &copy; {{ 'now' | date('y') }} &middot; by <span style="font-family:bold;">Ynod</span>
+             </small>
+          </p>
+    </footer>
+</html>
