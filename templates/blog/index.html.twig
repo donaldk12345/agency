@@ -11,6 +11,7 @@
 .container .row{
     width:100%;
 }
+/*u.truncate(10 ,'....')*/
 .container .row .card img{
   
 }
@@ -47,17 +48,21 @@ transition: all 1.5 ease;
   <div class="col-md-4">
   <div class="card" style="width: 20rem;">
     <div class="inner">
-    <img src=" /images/blog/{{ article.imageName }} " class="card-img-top" alt="..." style="width:100%; height:40vh;">
+    <img src=" {{  vich_uploader_asset(article, 'imageFile')  }} " class="card-img-top" alt="..." style="width:100%; height:40vh;">
     </div>
     <div class="card-body">
       <h5 class="card-title"> {{ article.titre }} </h5>
-      <p class="card-text"> {{ article.content }} </p>
+      <p class="card-text"> {{ article.content |u.truncate(70 ,'...') }} </p>
       <p class="card-text"><small class="text-muted"> {{ article.createAt | date ('d/m/y') }} à {{ article.createAt | date ('h:i') }}</small></p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href=" {{ path('view' , {'id': article.id }  )}} " class="btn btn-raised shadow my-button w-xs cyan">Lire l'article</a>
     </div>
   </div>
   </div>
-   {% endfor %} 
+   {% endfor %}
+  <div class="pagination">
+   {{ knp_pagination_render(articles) }}
+  </div>
+
 </div>
 </div>
 {% endblock %}

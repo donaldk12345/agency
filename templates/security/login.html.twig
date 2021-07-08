@@ -1,6 +1,6 @@
  {% extends "base.html.twig" %}
  {% block body %}
-   <h1 style="text-align:center; color:#fe4066; font-style:bold;" class="mt-5">Connexion </h1>
+   <h1 style="text-align:center; color:#00bcd4; font-style:bold;" class="mt-5">Connexion </h1>
    <div class="container-fluid ">
     <div class="row justify-content-center">
        <div class="col-6 col-sm-6 col-md-3">
@@ -19,8 +19,11 @@
         </div>
             
         <div class="mt-3">
-            <button class="btn btn-raised shadow my-button w-xs green col-md-12" type="submit" >Connexion</button>
+            <button class="btn btn-raised shadow my-button w-xs cyan col-md-12" type="submit" >Connexion</button>
     
+         </div>
+         <div class="mt-4 text-primary">
+         <a href=" {{ path('reseat')}} " style="text-decoration:none; color:#00bcd4;">j'ai oublier mon mot de passe !</a>
          </div>
 
       </form>

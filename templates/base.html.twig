@@ -7,7 +7,10 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
- <link href="css/bootstrap.min.css" rel="stylesheet">
+ <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
  <link href="css/style.css" rel="stylesheet">
  <link href=" {{ asset('css/app.css')}} " rel="stylesheet">
  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -23,20 +26,25 @@
            border-radius:0;
          }
          .alert-success{
-           background-color:green;
+           
          }
+         .home{
+  background-color:#fff!important;
+  color:#111!important;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+}
         </style>
 
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
             
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src=" {{ asset('js/bootstrap.bundle.min.js') }} "></script>
+<script src="{{ asset('js/popper.min.js ') }}"></script>
+<script src=" {{ asset('js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar home navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">MonApp</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +64,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href=" {{path('modification')}}">Modification</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href=" {{path('contact')}}">Contact</a>
         </li>
         {% endif %}
       </ul>
@@ -95,7 +106,7 @@
     <footer class="container text-center mt-4">
          <p class="text-muted">
              <small>
-                &copy; {{ 'now' | date('y') }} &middot; by <span style="font-family:bold;">Ynod</span>
+                &copy; {{ 'now' | date('y') }} &middot; by <span style="font-family:bold; color:#fe4066; font-size:20px;">&#9758;</span>Ynod
              </small>
           </p>
     </footer>

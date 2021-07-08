@@ -10,13 +10,13 @@
 
 <div class="container-fluid ">
     <div class="row justify-content-center">
-       <div class="col-12 col-sm-6 col-md-3">
-    <h1 style="text-align:center; color:purple; font-family:bold;">Créer Article</h1>
+       <div class="col-12 col-sm-6 col-md-3 mt-3">
+    <h1 style="text-align:center; color:purple; font-family:bold;" class="mt-4"></h1>
     {% if form is defined %}
      {{ form_start(form) }}
      {{ form_errors(form) }}
     {{ form_widget(form) }}
- <button type="submit" class="btn btn-primary mt-4 col-md-12">Creer</button>
+ <button type="submit" class="btn btn-raised shadow my-button w-xs cyan mt-4 col-md-12">Creer</button>
  {{ form_end(form) }}
  {% endif %}
          </div>

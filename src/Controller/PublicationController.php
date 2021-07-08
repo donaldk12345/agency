@@ -8,11 +8,15 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PublicationController extends AbstractController
 {
-    #[Route('/publication', name: 'publication')]
+      /**
+     * @Route("/publication",name="publication")
+     * @IsGranted("ROLE_USER")
+     */
     public function index(Request $request, EntityManagerInterface $manager): Response
     {
 
@@ -30,4 +34,6 @@ class PublicationController extends AbstractController
             'form' =>$form->createView()
         ]);
     }
+   
+    
 }
