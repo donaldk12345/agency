@@ -30,7 +30,7 @@ class BlogController extends AbstractController
         ]);
     }
     /**
-     * @Route("/",name="home")
+     * @Route("/",name="app_home")
      * @IsGranted("ROLE_USER")
      */
     

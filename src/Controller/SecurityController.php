@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -18,7 +19,7 @@ class SecurityController extends AbstractController
 {
     
     #[Route('/inscription', name: 'security_registration')]
-    public function registration( Request $request , EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder,\Swift_Mailer $mailer){
+    public function registration( Request $request , EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder,MailerInterface $mailer){
          $user= new User();
          $form=$this->createForm(RegistrationType::class ,$user);
          $form->handleRequest($request);
@@ -28,11 +29,11 @@ class SecurityController extends AbstractController
          $manager->persist($user);
          $manager->flush();
 
-         $email =(new \Swift_Message())
-              ->setfrom('fotsoyvesdonald@gmail.com')
-              ->setto($user->getEmail())
-              ->setsubject('Bienvenue sur le site')
-              ->setBody("Merci pour votre Insciption {$user->getUserName()} ");
+         $email =(new Email())
+              ->from('fotsoyvesdonald@gmail.com')
+              ->to($user->getEmail())
+              ->subject('Bienvenue sur le site')
+              ->text("Merci pour votre Insciption {$user->getUserName()} ");
          $mailer->send($email);
 
          $this->addFlash('success' ,' Votre compte à été Créer avec succeés !');

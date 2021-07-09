@@ -22,7 +22,7 @@ security:
                 check_path: admin_account_login
             logout:
                 path: security_logout
-                target: home 
+                target: app_home 
         main:
             anonymous: true
             provider: in_database
